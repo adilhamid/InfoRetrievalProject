@@ -1,0 +1,5 @@
+.idea/
+apicache/
+throttle.ctrl
+wiki_parser.pyc
+wiki2plain.pyc
