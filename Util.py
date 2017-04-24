@@ -1,9 +1,7 @@
 import os
-import codecs
-
 
 #Utility Function to Load the GlobalIDF Function
-def GetGlobalDict(filename):
+def getglobalfreqdict(filename):
     indexdict = {}
     if os.path.exists(filename):
         if not os.path.getsize(filename)> 0:
@@ -17,8 +15,4 @@ def GetGlobalDict(filename):
         return indexdict
     else:
         print "File Doesn't Exist"
-
-if __name__ == "__main__":
-    dictVal = getIndexDict("D:/Projects/Triviathon/FunFacts/FunFacts-master/plainIdfIndex.txt")
-    #print dictVal['garland']
 

@@ -14,9 +14,6 @@ class WikiParser:
         self.stop_words = set(stopwords.words('english'))
         self.k = 50
 
-    def checkInCache(self):
-        return
-
     def getEntityTokens(self, wiki_entity):
         page = pywikibot.Page(self.site, wiki_entity)  #here we just crawl for the new entry
         text = page.text
@@ -32,13 +29,16 @@ class WikiParser:
                 token_freq_map[token] = 1.0
             else:
                 token_freq_map[token] += 1.0
-        print token_freq_map
+        return token_freq_map
 
     def getCategoryForEntity(self, wiki_entity):
         page = pywikibot.Page(self.site, wiki_entity)
         cat_values = page.categories()
-        for cat in cat_values:
-            print cat.title()
+        cat_list = list(cat_values)
+        cat_names = []
+        for cat in cat_list:
+            cat_names.append(cat.title())
+        return cat_names
 
 
 
