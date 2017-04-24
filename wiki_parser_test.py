@@ -4,4 +4,5 @@ if __name__ == "__main__":
     wiki_parser = wiki_parser.WikiParser()
     wiki_parser.getEntityTokens("Barack Obama")
     wiki_parser.getEntityforCategory("Category:Writers from Chicago")
+    wiki_parser.getCategoryForEntity("Barack Obama")
 
