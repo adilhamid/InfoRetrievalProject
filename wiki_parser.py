@@ -12,10 +12,11 @@ class WikiParser:
         self.cache_stem = {}
         self.stemmer = PorterStemmer()
         self.stop_words = set(stopwords.words('english'))
-        self.k = 50
+        self.k = 30
 
     def getEntityTokens(self, wiki_entity):
-        page = pywikibot.Page(self.site, wiki_entity)  #here we just crawl for the new entry
+        site = pywikibot.Site('en', 'wikipedia')
+        page = pywikibot.Page(site, wiki_entity)  #here we just crawl for the new entry
         text = page.text
         wiki2plain_instance = wiki2plain.Wiki2Plain(text)  #make the text to plain text
         text = wiki2plain_instance.text
@@ -32,20 +33,23 @@ class WikiParser:
         return token_freq_map
 
     def getCategoryForEntity(self, wiki_entity):
-        page = pywikibot.Page(self.site, wiki_entity)
+        site = pywikibot.Site('en', 'wikipedia')
+        page = pywikibot.Page(site, wiki_entity)
         cat_values = page.categories()
         cat_list = list(cat_values)
         cat_names = []
         for cat in cat_list:
-            cat_names.append(cat.title())
+            if not cat.isHiddenCategory():
+                cat_names.append(cat.title())
         return cat_names
 
 
 
     def getEntityforCategory(self, category):
-        catdata = pywikibot.Category(self.site, title=category)
+        site = pywikibot.Site('en', 'wikipedia')
+        catdata = pywikibot.Category(site, title=category)
         entities = catdata.articles()
-        self.getRefinedEntity(entities)
+        return self.getRefinedEntity(entities)
 
     def cacheInStem(self, token):
         if token not in self.cache_stem:
@@ -64,8 +68,6 @@ class WikiParser:
             list_sample = random.sample(range_entity, self.k)
             for i in range(0, self.k):
                 refinedEntity.append(list_entities[list_sample[i]].title())
-            print refinedEntity
-            print len(refinedEntity)
             return refinedEntity
 
 

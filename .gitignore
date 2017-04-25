@@ -1,3 +1,4 @@
+
 .idea/
 apicache/
 throttle.ctrl
@@ -5,3 +6,6 @@ wiki_parser.pyc
 wiki2plain.pyc
 util.pyc
 wiki_trivia_metric_calculator.pyc
+GoogleNews-vectors-negative300.bin
+algorithm_wrapper.pyc
+catentcache/*
