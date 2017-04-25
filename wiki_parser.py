@@ -12,7 +12,7 @@ class WikiParser:
         self.cache_stem = {}
         self.stemmer = PorterStemmer()
         self.stop_words = set(stopwords.words('english'))
-        self.k = 30
+        self.k = 50
 
     def getEntityTokens(self, wiki_entity):
         site = pywikibot.Site('en', 'wikipedia')

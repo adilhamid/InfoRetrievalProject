@@ -50,32 +50,6 @@ class WikiTriviaMetricCalculator:
         sim2 = self.getEntitySimilarityHelper(entity2, entity1)
         return ((sim1 + sim2) / 2.0)
 
-    # Get the Cohesiveness of the Article
-    def CalcCategoryCohesiveness(self, categoryName, numArticles=50):
-
-        entityNames = self.WikiParser.getEntityForCategory(categoryName)
-        numEntities = len(entityNames)
-
-        # Get the Cohesiveness using Article Article Similarity
-        sumVal = 0.0
-        sumSqVal = 0.0
-
-        for i in range(numEntities):
-            entityFirst = self.WikiParser.getEntityToken(
-                entityNames[i])  # Assuming that we are getting the TF DICTTIONARY
-            for j in range(i):
-                entitySecond = self.WikiParser.getEntityToken(entityNames[j])
-                cohesiveVal = self.GetArticleToArticleSimilarity(entityFirst, entitySecond)
-
-                sumVal += cohesiveVal
-                sumSqVal += cohesiveVal * cohesiveVal
-
-        avgCohesiveVal = 0.0
-        if (numEntities > 1):
-            avgCohesiveVal = (2 * sumVal) / (numEntities * (numEntities - 1))
-
-        return categoryName, avgCohesiveVal
-
     def getEntitySimilarityHelper(self, entity1, entity2):
         sim = 0.0
         if (len(entity1) < self.k_val or len(entity2) < self.k_val):
