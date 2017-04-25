@@ -1,6 +1,6 @@
 import pywikibot
 import wiki2plain
-import  re
+import re
 import random
 from nltk.stem.porter import *
 from nltk.corpus import stopwords
@@ -14,11 +14,9 @@ class WikiParser:
         self.stop_words = set(stopwords.words('english'))
         self.k = 50
 
-    def checkInCache(self):
-        return
-
-    def getEntityTokens(self, wiki_enitity):
-        page = pywikibot.Page(self.site, wiki_enitity)  #here we just crawl for the new entry
+    def getEntityTokens(self, wiki_entity):
+        site = pywikibot.Site('en', 'wikipedia')
+        page = pywikibot.Page(site, wiki_entity)  #here we just crawl for the new entry
         text = page.text
         wiki2plain_instance = wiki2plain.Wiki2Plain(text)  #make the text to plain text
         text = wiki2plain_instance.text
@@ -32,16 +30,26 @@ class WikiParser:
                 token_freq_map[token] = 1.0
             else:
                 token_freq_map[token] += 1.0
-        print token_freq_map
+        return token_freq_map
 
-    def getCategoryForEntity(self, entity):
-        return
+    def getCategoryForEntity(self, wiki_entity):
+        site = pywikibot.Site('en', 'wikipedia')
+        page = pywikibot.Page(site, wiki_entity)
+        cat_values = page.categories()
+        cat_list = list(cat_values)
+        cat_names = []
+        for cat in cat_list:
+            if not cat.isHiddenCategory():
+                cat_names.append(cat.title())
+        return cat_names
+
 
 
     def getEntityforCategory(self, category):
-        catdata = pywikibot.Category(self.site, title=category)
+        site = pywikibot.Site('en', 'wikipedia')
+        catdata = pywikibot.Category(site, title=category)
         entities = catdata.articles()
-        self.getRefinedEntity(entities)
+        return self.getRefinedEntity(entities)
 
     def cacheInStem(self, token):
         if token not in self.cache_stem:
@@ -60,8 +68,6 @@ class WikiParser:
             list_sample = random.sample(range_entity, self.k)
             for i in range(0, self.k):
                 refinedEntity.append(list_entities[list_sample[i]].title())
-            print refinedEntity
-            print len(refinedEntity)
             return refinedEntity
 
 
