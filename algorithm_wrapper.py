@@ -7,8 +7,6 @@ import operator
 #globals
 category_entity_cache_dir = "catentcache/"
 output_cache_dir = "outputCache/"
-wiki_parser_instance = wiki_parser.WikiParser()
-wiki_trivia_metric_calculator_instance = wiki_trivia_metric_calculator.WikiTriviaMetricCalculator()
 surprise_weight = 1.1
 
 def triviaAlgorithm(entity):
@@ -26,7 +24,9 @@ def triviaAlgorithm(entity):
         open_output_file.close()
         return answer_mat
 
-    # If the cache doesn't exixt- Make the new one for the said entity
+    wiki_parser_instance = wiki_parser.WikiParser()
+    wiki_trivia_metric_calculator_instance = wiki_trivia_metric_calculator.WikiTriviaMetricCalculator()
+    # If the cache doesn't exist- Make the new one for the said entity
     entity_cats = wiki_parser_instance.getCategoryForEntity(entity)
     if not entity_cats:
         return
