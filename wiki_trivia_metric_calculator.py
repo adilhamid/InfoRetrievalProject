@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf8')
 import gensim
 import heapq
 import math
-import util
+import Util as util
 import pdb
 # Class Def for the Calculation of various metrics
 
