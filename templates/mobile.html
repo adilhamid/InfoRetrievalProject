@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- some part of the following code is borrowed from http://bootsnipp.com/snippets/featured/product-page-for-online-shop. It has been modified according to need. -->
+<!-- Link License http://bootsnipp.com/license -->
+
+<html>
+    <head>
+        <meta lang="en" charset="utf-8">
+        <title>Mobile Phone</title>
+        <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+        
+        <!-- custom css -->
+        <link href="css/mobile.css" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>  
+        <script type="application/javascript" src="js/bootstrap.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>       
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/mobile.js"></script>
+    </head>
+    <body>
+	    <div id = "header"></div> 	
+       <div class="container-fluid">
+    <div class="content-wrapper">	
+		<div class="item-container">	
+			<div class="container">	
+				<div class="col-md-8">
+					<div class="product col-md-4 service-image-left">
+                    
+						<center id ='main-image'>
+						</center>
+					</div>
+					
+					<div class="container service1-items col-sm-2 col-md-2 pull-left">
+						<center id ='side-image'>
+						</center>
+					</div>
+				</div>
+				<div class="col-md-7" id ="summary">
+				</div>
+			</div> 
+		</div>
+		<div class="container-fluid">		
+			<div class="col-md-12 product-info">
+					<ul id="myTab" class="nav nav-tabs nav_tabs">
+						
+						<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+						<li><a href="#service-two" data-toggle="tab">REVIEWS</a></li>		
+					</ul>
+				<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade in active" id="service-one">
+							<section class="container product-info" id = "product-info">
+							</section>				  
+						</div>
+					<div class="tab-pane fade" id="service-two">
+						<section class="container" id ="service-two-id">
+						</section>
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>
+    </body>
+</html>
