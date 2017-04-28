@@ -1,5 +1,6 @@
 import wiki_parser
 import wiki_trivia_metric_calculator
+import Util as util
 import pdb
 import os
 import operator
@@ -9,7 +10,9 @@ category_entity_cache_dir = "catentcache/"
 output_cache_dir = "outputCache/"
 surprise_weight = 1.1
 
-def triviaAlgorithm(entity):
+def triviaAlgorithm(search_entity):
+    entity = util.searchWiki(search_entity)
+    print "Entity Found" + entity
     # Check for the Output Cache
     full_path = output_cache_dir + entity + ".txt"
     if not os.path.exists(output_cache_dir):

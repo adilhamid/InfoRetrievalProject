@@ -1,4 +1,5 @@
 import os
+import wikipedia as wiki
 
 #Utility Function to Load the GlobalIDF Function
 def getglobalfreqdict(filename):
@@ -16,3 +17,10 @@ def getglobalfreqdict(filename):
     else:
         print "File Doesn't Exist"
 
+def searchWiki(query_term):
+    wiki.set_lang("en")
+    search_result = wiki.search(query=query_term)
+    if len(search_result):
+        return search_result[0]
+    else:
+        print("No search Results found")
