@@ -6,13 +6,28 @@ import operator
 
 #globals
 category_entity_cache_dir = "catentcache/"
+output_cache_dir = "outputCache/"
+wiki_parser_instance = wiki_parser.WikiParser()
+wiki_trivia_metric_calculator_instance = wiki_trivia_metric_calculator.WikiTriviaMetricCalculator()
 surprise_weight = 1.1
 
 def triviaAlgorithm(entity):
-    wiki_parser_instance = wiki_parser.WikiParser()
-    wiki_trivia_metric_calculator_instance = wiki_trivia_metric_calculator.WikiTriviaMetricCalculator()
-    entity_cats = wiki_parser_instance.getCategoryForEntity(entity)
+    # Check for the Output Cache
+    full_path = output_cache_dir + entity + ".txt"
+    if not os.path.exists(output_cache_dir):
+        os.makedirs(output_cache_dir)
+
     answer_mat = {}
+    if os.path.isfile(full_path):
+        open_output_file = open(full_path, "r")
+        for line in open_output_file:
+            trivia, score = line.split(":")
+            answer_mat[trivia] = score
+        open_output_file.close()
+        return answer_mat
+
+    # If the cache doesn't exixt- Make the new one for the said entity
+    entity_cats = wiki_parser_instance.getCategoryForEntity(entity)
     if not entity_cats:
         return
     if not os.path.exists(category_entity_cache_dir):
@@ -30,16 +45,12 @@ def triviaAlgorithm(entity):
             print "Overall score for cat ", entity_cat, " is ", answer_mat[entity_cat.split(":")[1]]
             print "Ending     <------------- ----------------->"
     answer_mat = sorted(answer_mat.items(), key=operator.itemgetter(1), reverse=True)
-    output_cache = "outputCache/"
-    if not os.path.exists(output_cache):
-        os.makedirs(output_cache)
-    full_path = output_cache + entity + ".txt"
     target = open(full_path, "w")
     for key in answer_mat:
         target.write(key[0] + ":" + repr(key[1]))
         target.write("\n")
     target.close()
-    print answer_mat
+    return answer_mat
 
 def surprise(entity_input, entity_cat, wiki_parser_instance, wiki_trivia_metric_calculator_instance):
     sum = 0.0
