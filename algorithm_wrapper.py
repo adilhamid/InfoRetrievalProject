@@ -10,7 +10,11 @@ category_entity_cache_dir = "catentcache/"
 output_cache_dir = "outputCache/"
 surprise_weight = 1.1
 
-def triviaAlgorithm(search_entity):
+wiki_parser_instance = None
+wiki_trivia_metric_calculator_instance = None
+
+
+def triviaAlgorithm(search_entity, wiki_parser_instance, wiki_trivia_metric_calculator_instance):
     entity = util.searchWiki(search_entity)
     print "Entity Found" + entity
     # Check for the Output Cache
@@ -25,10 +29,10 @@ def triviaAlgorithm(search_entity):
             trivia, score = line.split(":")
             answer_mat[trivia] = score
         open_output_file.close()
+        answer_mat = sorted(answer_mat.items(), key=operator.itemgetter(1), reverse=True)
         return answer_mat
 
-    wiki_parser_instance = wiki_parser.WikiParser()
-    wiki_trivia_metric_calculator_instance = wiki_trivia_metric_calculator.WikiTriviaMetricCalculator()
+
     # If the cache doesn't exist- Make the new one for the said entity
     entity_cats = wiki_parser_instance.getCategoryForEntity(entity)
     if not entity_cats:
@@ -60,8 +64,8 @@ def surprise(entity_input, entity_cat, wiki_parser_instance, wiki_trivia_metric_
     count = 0.0
     entity_input_tokens = wiki_parser_instance.getEntityTokens(entity_input)
     entity_input_top = wiki_trivia_metric_calculator_instance.getTopKTFIDFforEntity(entity_input_tokens)
-
-    path = category_entity_cache_dir + entity_cat.split(":")[1] + "/"
+    ent_cat_path = entity_cat.split(":")[1]
+    path = category_entity_cache_dir + cleanifyPath(ent_cat_path) + "/"
     if os.path.exists(path):
         print "Reading from file "
         outer_list = []
@@ -90,10 +94,10 @@ def surprise(entity_input, entity_cat, wiki_parser_instance, wiki_trivia_metric_
         if new_entity != entity_input:
             new_entity_tokens = wiki_parser_instance.getEntityTokens(new_entity)
             new_entity_tokens_top = wiki_trivia_metric_calculator_instance.getTopKTFIDFforEntity(new_entity_tokens)
-            new_entity_top_cache = category_entity_cache_dir + entity_cat.split(':')[1] + "/"
+            new_entity_top_cache = category_entity_cache_dir + cleanifyPath(ent_cat_path) + "/"
             if not os.path.exists(new_entity_top_cache):
                 os.makedirs(new_entity_top_cache)
-            cache_file_name = new_entity_top_cache + new_entity + ".txt"
+            cache_file_name = new_entity_top_cache + cleanifyPath(new_entity) + ".txt"
             target = open(cache_file_name, "w")
             for top_token in new_entity_tokens_top:
                 target.write(top_token)
@@ -109,7 +113,7 @@ def cohesivness(entity_cat, wiki_trivia_metric_calculator_instance):
     sum = 0.0
     count = 0.0
     #answer = sum / count
-    path = category_entity_cache_dir + entity_cat + "/"
+    path = category_entity_cache_dir + cleanifyPath(entity_cat) + "/"
     outer_list = []
     for(root, dirs, files) in os.walk(path):
         for file in files:
@@ -130,6 +134,10 @@ def cohesivness(entity_cat, wiki_trivia_metric_calculator_instance):
     answer = sum / count
     print "Cohes is for cat ", entity_cat, " is ", answer
     return answer
+
+def cleanifyPath(path):
+    path = ''.join(e for e in path if e.isalnum())
+    return path
 
 if __name__ == "__main__":
     cohesivness("Argentine Roman Catholics", wiki_trivia_metric_calculator.WikiTriviaMetricCalculator())
