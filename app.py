@@ -13,8 +13,7 @@ def main():
 def entity():
     _entity = request.form['searchfield']
     data = algorithm_wrapper.triviaAlgorithm(_entity)
-    s = [(k, data[k]) for k in sorted(data, key=data.get, reverse=True)]
-    data = [element[0] for element in s]
+    data = [element[0] for element in data]
     return render_template('entity.html',data = json.dumps(data),entity =_entity)
 
 

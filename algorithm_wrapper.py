@@ -14,7 +14,7 @@ wiki_parser_instance = None
 wiki_trivia_metric_calculator_instance = None
 
 
-def triviaAlgorithm(search_entity, wiki_parser_instance, wiki_trivia_metric_calculator_instance):
+def triviaAlgorithm(search_entity, wiki_parser_instance=None, wiki_trivia_metric_calculator_instance=None):
     entity = util.searchWiki(search_entity)
     print "Entity Found" + entity
     # Check for the Output Cache
