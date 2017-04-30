@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import Flask, render_template
+from flask import Flask, render_template, json
 from flask import Flask, request, send_from_directory
 import os
 import algorithm_wrapper
@@ -12,9 +12,10 @@ def main():
 @app.route("/entity", methods=['POST'])
 def entity():
     _entity = request.form['searchfield']
-    answer = algorithm_wrapper.triviaAlgorithm(_entity)
-    for key in answer:
-        return key
+    data = algorithm_wrapper.triviaAlgorithm(_entity)
+    s = [(k, data[k]) for k in sorted(data, key=data.get, reverse=True)]
+    data = [element[0] for element in s]
+    return render_template('entity.html',data = json.dumps(data),entity =_entity)
 
 
 @app.route('/js/<path:path>')
