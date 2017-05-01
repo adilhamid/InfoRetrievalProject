@@ -9,111 +9,87 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <!-- custom css -->
-        <link href={{ url_for('static', filename='css/shop-homepage.css') }} rel="stylesheet">
         <link rel="stylesheet" href={{ url_for('static', filename='css/demo.css')}}>
-    <link rel="stylesheet" href={{ url_for('static', filename='css/header-search.css')}}>
-    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-    <link href={{ url_for('static', filename='css/entity.css') }} rel="stylesheet">
-        <!-- <link href="css/shop-homepage.css" rel="stylesheet"> -->
+        <link rel="stylesheet" href={{ url_for('static', filename='css/header-search.css')}}>
+        <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+        <link href={{ url_for('static', filename='css/entity.css') }} rel="stylesheet">
     </head>
-    <body>  
-    <script type="application/javascript" src="js/jquery-2.2.1.min.js"></script>
+    <body>
+        <script type="application/javascript" src="js/jquery-2.2.1.min.js"></script>
         <script type="application/javascript" src="js/bootstrap.min.js"></script>
-        <script type="application/javascript" src="js/scripts.js"></script>   
         <!-- <div id = "header"></div>     -->
-        <header class="header-search" style="height:15vh;">
-
-    <div class="header-limiter">
-
-        <h1><a href="/" style="font-size:7vh;">Trivia<span>thon</span></a></h1>
-
-        <nav>
-            <a href="/">Home</a>
-            <!-- <a href="#" class="selected">Blog</a> -->
-            <!-- <a href="#">Pricing</a> -->
-            <a href="#">Contact</a>
-        </nav>
-
-        <form method="get" action="#">
-            <input type="search" placeholder="Search!" name="search">
-        </form>
-
-    </div>
-
-</header>
-<div class="row searchbar" style="width:100%; height:7vh;">
-                        <div style="height:inherit;">
-                            <form action="/entity", method="POST" style="width:100%;height:inherit;">
-                                <input type="submit"value="Search" style="float: right; width:25%; height:inherit;" class="btn btn-primary" id = "search" />
-                                    <div style="overflow: hidden; height:inherit;">
-                                        <input type="text" style="width: 100%; height: inherit;" placeholder="Search for trivia" id ="searchfield" name ="searchfield" />
-                                    </div>
-                            </form>
+        <div id="header"></div>
+        <script>
+            $(document).ready(function() {
+                $('#header').load('header.html');
+            });
+        </script>
+        <div class="row searchbar" style="width:100%; height:7vh;">
+            <div style="height:inherit;">
+                <form action="/entity", method="POST" style="width:100%;height:inherit;">
+                    <input type="submit"value="Search" style="float: right; width:25%; height:inherit;" class="btn btn-primary" id = "search" />
+                        <div style="overflow: hidden; height:inherit;">
+                            <input type="text" style="width: 100%; height: inherit;" placeholder="Search for trivia" id ="searchfield" name ="searchfield" />
                         </div>
-                    </div>
+                </form>
+            </div>
+        </div>
         <div id="wrapper">
             <div id="page-content-wrapper">
                 <div class="container">
-                <div id ="one">
-                <div id="description">
-                    <div>
-                    <span>
-                    TRIVIATHON
-                    </span>
-                    <ul id="pointList">
-                       <li id="points">
-                       A trivia search engine based on Surprise factor and Cohesiveness among different categories.
-                       </li>
-                       <li id="points">
-                       Developed out of a course project on Information Storage and Retrieval.
-                       </li>
-                       <li id="points">
-                        Trivia Facts based on WikiPedia dataset.
-                       </li>
-                    </ul>
-                    </div>
-                    </div>
-</div>
-
-<div id="two">
-                    
-                    <div id="sliding">
-                       <div>
-                           <div id="carousel" class="carousel slide" data-ride="carousel">
-                                <!-- Indicators -->
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel" data-slide-to="1"></li>
-                                    <li data-target="#carousel" data-slide-to="2"></li>
-                                </ol>
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img src="http://i.ebayimg.com/images/i/391300439464-0-1/s-l1000.jpg" alt="Slide 1">
-                                    </div>
-                                    <div class="item">
-                                        <img src="http://i.ebayimg.com/images/i/262163459490-0-1/s-l1000.jpg" alt="Slide 2">
-                                    </div>
-                                    <div class="item">
-                                        <img src="http://i.ebayimg.com/images/i/182037887617-0-1/s-l1000.jpg" alt="Slide 1">
-                                    </div>        
-                                </div>
-                                <!-- Left and right controls -->
-                                <a class="left carousel-control" href="#carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                                <a class="right carousel-control" href="#carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>  
+                    <div id ="one">
+                        <div id="description">
+                            <div>
+                                <span>
+                                    TRIVIATHON
+                                </span>
+                                    <ul id="pointList">
+                                        <li id="points">
+                                            A trivia search engine based on Surprise factor and Cohesiveness among different categories.
+                                        </li>
+                                        <li id="points">
+                                            Developed out of a course project on Information Storage and Retrieval.
+                                        </li>
+                                        <li id="points">
+                                            Trivia Facts based on WikiPedia dataset.
+                                        </li>
+                                    </ul>
                             </div>
-                           
-                           
                         </div>
                     </div>
-            
+
+                    <div id="two">
+                        <div id="sliding">
+                            <div>
+                                 <div id="carousel" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carousel" data-slide-to="1"></li>
+                                        <li data-target="#carousel" data-slide-to="2"></li>
+                                    </ol>
+                                <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <img src="http://i.ebayimg.com/images/i/391300439464-0-1/s-l1000.jpg" alt="Slide 1">
+                                        </div>
+                                        <div class="item">
+                                            <img src="http://i.ebayimg.com/images/i/262163459490-0-1/s-l1000.jpg" alt="Slide 2">
+                                        </div>
+                                        <div class="item">
+                                            <img src="http://i.ebayimg.com/images/i/182037887617-0-1/s-l1000.jpg" alt="Slide 1">
+                                        </div>
+                                    </div>
+                                <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                    <a class="right carousel-control" href="#carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                                 </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <p>
-                    </p>
-                    
                 </div>
             </div>
-        </div> 
-        
+        </div>
     </body>
 </html>

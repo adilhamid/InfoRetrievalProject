@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <meta lang="en" charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Triviathon</title>
+        <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <!-- custom css -->
+        <link rel="stylesheet" href='css/demo.css'>
+        <link rel="stylesheet" href='css/header-search.css'>
+        <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <script type="application/javascript" src="js/jquery-2.2.1.min.js"></script>
+        <script type="application/javascript" src="js/bootstrap.min.js"></script>
+        <!-- <div id = "header"></div>     -->
+        <div id="header"></div>
+        <div id="questions">
+        </div>
+        <script>
+            $(document).ready(function() {
+                var global_answers = []
+                function shuffle(array) {
+                    var currentIndex = array.length, temporaryValue, randomIndex;
+
+                    // While there remain elements to shuffle...
+                    while (0 !== currentIndex) {
+
+                        // Pick a remaining element...
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex -= 1;
+
+                        // And swap it with the current element.
+                         temporaryValue = array[currentIndex];
+                         array[currentIndex] = array[randomIndex];
+                         array[randomIndex] = temporaryValue;
+                    }
+                    return array;
+                }
+                $('#header').load('header.html');
+                $.get( "https://opentdb.com/api.php?amount=5", function( data ) {
+                    var questions = data["results"];
+                    $.each(questions, function (key, val) {
+                        var options = []
+                        options.push(val['correct_answer']);
+                        global_answers.push(val['correct_answer'])
+                        $.each(val['incorrect_answers'], function (key1, value1) {
+                            options.push(value1)
+                        });
+                        var html =  '<p>' + val["question"] + '</p>';
+                        html += '<ul>';
+                        var array_length = options.length;
+                        for(var i = 0; i < array_length; ++i) {
+                            html += '<input type="radio" name=' + key.toString() + ' id=' + key.toString() + ' >';
+                            html += '<label for=' + key.toString() + ' > ' + options[i] + '</label><br/>'
+
+                        }
+                        html += '</ul>';
+                        $('#questions').append(html);
+                    });
+                });
+
+                
+            });
+        </script>
+    </body>
+</html>
