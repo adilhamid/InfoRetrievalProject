@@ -16,7 +16,9 @@ wiki_trivia_metric_calculator_instance = None
 
 def triviaAlgorithm(search_entity, wiki_parser_instance=None, wiki_trivia_metric_calculator_instance=None):
     entity = util.searchWiki(search_entity)
-    print "Entity Found" + entity
+    if not entity:
+		return
+    print "Entity Found: " + entity
     # Check for the Output Cache
     full_path = output_cache_dir + entity + ".txt"
     if not os.path.exists(output_cache_dir):
