@@ -36,6 +36,7 @@ gensim==2.0.0
 matplotlib==2.0.0
 mistune==0.7.3
 numpy==1.12.1
+nltk==3.2.2
 numpydoc==0.6.0
 pandas==0.19.2
 partd==0.3.7
