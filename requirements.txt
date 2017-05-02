@@ -10,15 +10,6 @@ bitarray==0.8.1
 blaze==0.10.1
 bokeh==0.12.4
 boto==2.46.1
-Bottleneck==1.2.0
-bz2file==0.98
-cffi==1.9.1
-chardet==2.3.0
-chest==0.2.3
-click==6.7
-cloudpickle==0.2.2
-clyent==1.2.2
-colorama==0.3.7
 configobj==5.0.6
 configparser==3.5.0
 contextlib2==0.5.4
