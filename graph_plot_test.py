@@ -1,0 +1,2 @@
+import graphplot
+graphplot.drawSimPlotFixed()
