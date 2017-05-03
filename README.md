@@ -1,4 +1,4 @@
-# Triviathon -
+# Triviathon
 
 ### Introduction 
 Searching is very important part of present internet era. Most of the search engines try to give you exact and only information you ask through the query. Providing additional interesting facts along with required information makes user search more exploratory and help in increasing the user engagement. The latest search engines have started giving additional information to the user like www.yippy.com and others.
@@ -28,11 +28,9 @@ https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit
     $pip install wikipedia
     
     $ pip install flask
-    
-    $ pip install 
 
 - Run the app locally:
 
     $ python app.py
 
-- Results will appear on the screen itself
+- Results will appear on the web app screen itself
