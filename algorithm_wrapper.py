@@ -6,7 +6,7 @@ import os
 import operator
 
 #globals
-category_entity_cache_dir = "catentcache/"
+category_entity_cache_dir = "./catentcache/"
 output_cache_dir = "./outputCache/"
 surprise_weight = 1.1
 
@@ -18,15 +18,15 @@ def triviaAlgorithm(search_entity, wiki_parser_instance=None, wiki_trivia_metric
     entity = util.searchWiki(search_entity)
     if not entity:
 		return
+
     print "Entity Found: " + entity
-    # Check for the Output Cache
-    sub_path = entity.replace(" ", "")
-    print sub_path
-    full_path = output_cache_dir + sub_path + ".txt"
-    print "printing full path", full_path
+
+    if not os.path.exists(output_cache_dir):
+        os.makedirs(output_cache_dir)
+
+    full_path = output_cache_dir + entity + ".txt"
     answer_mat = {}
     if os.path.isfile(full_path):
-        print "in here"
         open_output_file = open(full_path, "r")
         for line in open_output_file:
             trivia, score = line.split(":")
