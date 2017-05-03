@@ -23,11 +23,10 @@ def triviaAlgorithm(search_entity, wiki_parser_instance=None, wiki_trivia_metric
     sub_path = entity.replace(" ", "")
     print sub_path
     full_path = output_cache_dir + sub_path + ".txt"
-    if not os.path.exists(output_cache_dir):
-        os.makedirs(output_cache_dir)
-
+    print "printing full path", full_path
     answer_mat = {}
     if os.path.isfile(full_path):
+        print "in here"
         open_output_file = open(full_path, "r")
         for line in open_output_file:
             trivia, score = line.split(":")
