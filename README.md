@@ -4,7 +4,7 @@
 Please click **[VIDEO-ME](https://www.youtube.com/watch?v=t368PPe2hJ0)** to check the 2- min video presentation.
 
 ### Cached Wikipedia Data
-**[LINK To Data](https://drive.google.com/open?id=0B0JsA9YchOf7SHdlRFBGXzZJY0k)**
+**[LINK To Data ](https://drive.google.com/open?id=0B0JsA9YchOf7SHdlRFBGXzZJY0k)** (one need to be in tamu.edu domain to open it)
 
 
 ### Introduction 
@@ -18,7 +18,7 @@ Searching is very important part of present internet era. Most of the search eng
 * **[Pywikibot](https://www.mediawiki.org/wiki/Manual:Pywikibot)** has been used to extract wikipedia data for each searched entity. 
     
 ### Live Demo
-Use the Triviathon web **[app](https://triviathon.herokuapp.com/)** . Click the get trivia about people and also play Triviathon- Game.
+Use the Triviathon web **[app](https://triviathon.herokuapp.com/)** . Click the get trivia about people and also play Triviathon- Game. Please note on our heroku server we only uploaded cached data for twenty entities as present in input.txt. You can always run web app for 555 entities in topEntityList.txt locally by downloading the above given data and follwing instructions present below.
 
 ### Execution Instructions (to run locally on the machine):
 
@@ -35,9 +35,20 @@ https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit
     $pip install wikipedia
     
     $ pip install flask
+    
+    Download nltk corpora, by opening interactive python 
+    
+    >>> ntlk.downlaod()
+    
+-  For running the app there are two options:
+   
+     You can either run it from terminal, just type the following command:
+    $ python batchRun.py 
+    The above command will automatically start running online for the entities in the topEntityList.txt and generate the output in the outputCache folder for each entity
 
-- Run the app locally:
-
+    Alternativly you can run the web app for already cached entities from the data link given above. Download the outputCache folder and run the following command
     $ python app.py
+      Open the web on localhost at given port, and then just type any entity from the toEntityList.txt and get ranked trivia facts
 
-- Results will appear on the web app screen itself
+### Backend Architecture:
+![alt text](https://github.com/adilhamid/Triviathon/blob/master/images/arch.png)
