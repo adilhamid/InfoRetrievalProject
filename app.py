@@ -53,12 +53,12 @@ def questions():
                         question += line.replace('\n', '')
                         inner_dict["question"] = question
                         inner_dict["correct_answer"] = "False"
-                        inner_dict["incorrect_answer"] = "True"
+                        inner_dict["incorrect_answers"] = ["True"]
                     else:
                         question += line.replace('\n', '')
                         inner_dict["question"] = question
                         inner_dict["correct_answer"] = "True"
-                        inner_dict["incorrect_answer"] = "False"
+                        inner_dict["incorrect_answers"] = ["False"]
                     questions_array.append(inner_dict)
                     if count > max_count:
                         break

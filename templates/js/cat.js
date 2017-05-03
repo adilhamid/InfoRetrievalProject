@@ -1,17 +1,15 @@
 var index = 0;
 var data = $('#my-data').data("name");
 $(function() {
-		// var data= $('#my-data').data("name");
-	    // var $ul = document.getElementById('catList');
-	    for(var i = 0, size = 10; i < size ; i++){
-   			 $('#catList').append('<li class="category">'+data[i]+'</li>');
-   		}
-   		index = 10;
+ for(var i = 0, size = 10; i < size ; i++){
+   $('#catList').append('<li class="category">'+data[i]+'</li>');
+ }
+ index = 10;
 });
 
 $("#loadMore").click(function(){
-    for(var i=index; i<index+5; i++){
-    	$('#catList').append('<li class="category">'+data[i]+'</li>');
-    }
-    index = index+5;
+  for(var i=index; i<index+5; i++){
+   $('#catList').append('<li class="category">'+data[i]+'</li>');
+ }
+ index = index+5;
 });
