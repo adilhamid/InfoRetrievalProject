@@ -3,8 +3,10 @@ import wiki_parser
 import wiki_trivia_metric_calculator
 import os
 import textwrap
+import algorithm_wrapper
 
 category_entity_cache_dir = "catentcache/"
+output_cache_graph = "graphCache/"
 
 def drawSimPlot(entity, category):
     wiki_parser_instance = wiki_parser.WikiParser()
@@ -32,11 +34,9 @@ def drawSimPlot(entity, category):
     plt.legend().draggable()
     plt.show()
 
-def drawSimPlotFixed():
+def drawSimPlotFixed(wiki_parser_instance, wiki_trivia_metric_calculator_instance):
     initial_list = ["Jimmy Carter", "Bill Clinton", "Hillary Clinton", "Elizabeth Warren", "Joe Biden", "Chuck Schumer"]
     grammy_winners = ["Paula Abdul", "50 Cent", "Adele", "Yolanda Adams", "Bryan Adams", "John Addison"]
-    wiki_parser_instance = wiki_parser.WikiParser()
-    wiki_trivia_metric_calculator_instance = wiki_trivia_metric_calculator.WikiTriviaMetricCalculator()
     tokens = wiki_parser_instance.getEntityTokens("Barack Obama")
     topk_contenders = [5, 10, 20, 40, 50]
     colors = ["r", "g", "b", "y", "m"]
@@ -73,7 +73,57 @@ def drawSimPlotFixed():
     plt.show()
 
 
+def drawScatterPlot(entity):
+    x = []
+    y = []
+    anno = []
+    cats = ["Category20thcenturyAmericanwriters", "CategoryAmericanNobellaureates", "CategoryGrammyAwardwinners"
+            , "CategoryWashingtonDCDemocrats", "CategoryPunahouSchoolalumni", "Category1961births", "CategoryUnitedStatespresidentialcandidates2012",
+            "CategoryPoliticiansfromChicago"]
+    path = output_cache_graph
+    max_count = 10
+    for (root, dirs, files) in os.walk(path):
+        count = 0
+        for file in files:
+            if file.endswith('.txt'):
+                current_file = open(os.path.join(root, file), "r")
+                odd = True
+                anno.append(file[:-4])
+                for line in current_file:
+                    line = line.replace('\n', '')
+                    if odd:
+                        x.append(line)
+                    else:
+                        y.append(line)
+                    odd = False
+    plt.figure(3)
+    fig, ax = plt.subplots()
+    plt.title("Barack Obama Cohesiveness vs Surprise")
+    plt.xlabel("Surprise")
+    plt.ylabel("Cohesiveness")
+    ax.scatter(x, y)
+    for i, txt in enumerate(anno):
+        if txt in cats:
+            ax.annotate(txt, (x[i], y[i]))
+    print len(anno)
+    plt.show()
 
+def graphCache(entity, wiki_parser_instance, wiki_trivia_metric_calculator_instance):
+    entity_cats = wiki_parser_instance.getCategoryForEntity(entity)
+    if not os.path.exists(output_cache_graph):
+        os.makedirs(output_cache_graph)
+    for entity_cat in entity_cats:
+        full_path = output_cache_graph + algorithm_wrapper.cleanifyPath(entity_cat) + ".txt"
+        surprise = algorithm_wrapper.surprise(entity, entity_cat, wiki_parser_instance,wiki_trivia_metric_calculator_instance)
+        if surprise:
+            cohes = algorithm_wrapper.cohesivness(entity_cat.split(":")[1], wiki_trivia_metric_calculator_instance)
+            if cohes:
+                target = open(full_path, "w")
+                target.write('%s' % surprise)
+                target.write("\n")
+                target.write('%s' % cohes)
+                target.write("\n")
+                target.close()
 
 
 
