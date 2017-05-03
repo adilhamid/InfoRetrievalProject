@@ -125,9 +125,10 @@
 
 /* Making the header responsive. */
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 400px) {
 
 	.header-search {
+		height:18vh;
 		padding: 15px;
 		position: relative;
 	}
