@@ -7,7 +7,7 @@ import operator
 
 #globals
 category_entity_cache_dir = "catentcache/"
-output_cache_dir = "/app/outputCache/"
+output_cache_dir = "./outputCache/"
 surprise_weight = 1.1
 
 wiki_parser_instance = None
