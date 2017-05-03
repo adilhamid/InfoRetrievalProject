@@ -23,7 +23,7 @@ def triviaAlgorithm(search_entity, wiki_parser_instance=None, wiki_trivia_metric
     full_path = output_cache_dir + entity + ".txt"
     if not os.path.exists(output_cache_dir):
         os.makedirs(output_cache_dir)
-
+    
     answer_mat = {}
     if os.path.isfile(full_path):
         open_output_file = open(full_path, "r")
