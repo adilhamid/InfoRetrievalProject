@@ -5,7 +5,7 @@ Searching is very important part of present internet era. Most of the search eng
 
 ### Technology stack used
 * **Backend** Python is used as backend. All the algorithms are written in python.
-* **Frontend** It is Flask powered framework with css, html and javascript. (http://flask.pocoo.org/) 
+* **Full Stack Framework** It is Flask powered framework with python, css, html and javascript. (http://flask.pocoo.org/)
 
 ### Data Scrapping 
 * **[Pywikibot](https://www.mediawiki.org/wiki/Manual:Pywikibot)** has been used to extract wikipedia data for each searched entity. 
