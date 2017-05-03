@@ -15,6 +15,7 @@ def entity():
     data = algorithm_wrapper.triviaAlgorithm(_entity)
     data = [element[0] for element in data]
     print "printing final data, ", data
+    print  "printing json data ", json.dumps(data)
     return render_template('entity.html',data = json.dumps(data),entity =_entity)
 
 
