@@ -33,6 +33,7 @@ def triviaAlgorithm(search_entity, wiki_parser_instance=None, wiki_trivia_metric
             answer_mat[trivia] = score
         open_output_file.close()
         answer_mat = sorted(answer_mat.items(), key=operator.itemgetter(1), reverse=True)
+        print answer_mat
         return answer_mat
 
 
