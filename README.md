@@ -13,7 +13,10 @@ Searching is very important part of present internet era. Most of the search eng
 ### Live Demo
 Use the Triviathon web **[app](https://triviathon.herokuapp.com/)** . Click the get trivia about people and also play Triviathon- Game.
 
-### Execution Instructions ( to run locally on the machine):
+### Demo Video
+Please click **[VIDEO-ME](https://www.youtube.com/watch?v=t368PPe2hJ0)** to check the 2- min video presentation.
+
+### Execution Instructions (to run locally on the machine):
 
 - Download and extract the Google News Word2Vec model into the "models" folder:
 https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit 
