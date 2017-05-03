@@ -62,7 +62,7 @@ $(document).ready(function () {
 
 	function displayQuestion(){
 		var numberOfoptions = questionBank[questionNumber].length-1;
-		
+
 		var rnd=Math.random()*numberOfoptions;
 		rnd=Math.ceil(rnd);
 		var optionHtml = '';
@@ -158,4 +158,4 @@ $(document).ready(function () {
 		$(stage).append('<div class="questionText">You have finished the quiz!<br><br>Total questions: '+numberOfQuestions+'<br>Correct answers: '+score+'</div>');
 		$(stage).append('<form action="game.html"><input type="submit"value="Restart" style="float: right; width:25%; height:inherit;" class="btn btn-primary" id = "search" /></form>')
 	}
-s});//doc ready
+});//doc ready
