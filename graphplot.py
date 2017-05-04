@@ -41,9 +41,6 @@ def drawSimPlotFixed(wiki_parser_instance, wiki_trivia_metric_calculator_instanc
     topk_contenders = [5, 10, 20, 40, 50]
     colors = ["r", "g", "b", "y", "m"]
     plt.figure(2)
-    plt.xlabel('Compared articles')
-    plt.ylabel('Similarity')
-    plt.title('Barack Obama similarity')
     size_new = len(topk_contenders)
     for i in range(0, size_new):
         wiki_trivia_metric_calculator_instance.k_val = topk_contenders[i]
@@ -55,7 +52,7 @@ def drawSimPlotFixed(wiki_parser_instance, wiki_trivia_metric_calculator_instanc
             graph_list.append(wiki_trivia_metric_calculator_instance.getEntitySimilarity(topk1, topk_current))
         tups = zip(*enumerate(graph_list))
         plt.subplot(211)
-        plt.xticks(tups[0], [textwrap.fill(text, 10) for text in initial_list], rotation=90, fontsize=8)
+        plt.xticks(tups[0], [textwrap.fill(text, 10) for text in initial_list])
         plt.ylim((0.0, 1.0))
         plt.plot(tups[0], tups[1], label=str(topk_contenders[i]), color=colors[i])
 
@@ -66,7 +63,7 @@ def drawSimPlotFixed(wiki_parser_instance, wiki_trivia_metric_calculator_instanc
             graph_list_new.append(wiki_trivia_metric_calculator_instance.getEntitySimilarity(topk1, topk_current))
         tups_new = zip(*enumerate(graph_list_new))
         plt.subplot(212)
-        plt.xticks(tups_new[0], [textwrap.fill(text, 10) for text in grammy_winners], rotation=90, fontsize=8)
+        plt.xticks(tups_new[0], [textwrap.fill(text, 10) for text in grammy_winners])
         plt.ylim((0.0, 1.0))
         plt.plot(tups_new[0], tups_new[1], label=str(topk_contenders[i]), color=colors[i])
     plt.legend(title="Top k tokens").draggable()

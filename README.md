@@ -38,7 +38,7 @@ https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit
     
     Download nltk corpora, by opening interactive python 
     
-    >>> ntlk.downlaod()
+    >>> ntlk.download()
     
 -  For running the app there are two options:
    
