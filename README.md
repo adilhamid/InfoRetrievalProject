@@ -49,6 +49,9 @@ https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit
     Alternativly you can run the web app for already cached entities from the data link given above. Download the outputCache folder and run the following command
     $ python app.py
       Open the web on localhost at given port, and then just type any entity from the toEntityList.txt and get ranked trivia facts
-
+### Paper refernce
+**[Paper](http://www.pelleg.org/shared/hp/download/fun-facts-wsdm.pdf)**
 ### Backend Architecture:
 ![alt text](https://github.com/adilhamid/Triviathon/blob/master/images/arch.png)
+
+
