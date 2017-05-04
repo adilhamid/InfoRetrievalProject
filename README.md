@@ -11,7 +11,7 @@ Please click **[VIDEO-ME](https://www.youtube.com/watch?v=t368PPe2hJ0)** to chec
 Searching is very important part of present internet era. Most of the search engines try to give you exact and only information you ask through the query. Providing additional interesting facts along with required information makes user search more exploratory and help in increasing the user engagement. The latest search engines have started giving additional information to the user like www.yippy.com and others.
 
 ### Technology stack used
-* **Backend** Python is used as backend. All the algorithms are written in python.
+* **Backend** Backend is powered by python. All the algorithms are written in python.
 * **Full Stack Framework** It is Flask powered framework with python, css, html and javascript. (http://flask.pocoo.org/)
 
 ### Data Scrapping 
